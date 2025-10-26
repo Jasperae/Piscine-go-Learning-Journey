@@ -1,5 +1,4 @@
-Excellent — this is a **very good question** because you’re not just copying code; you want to *understand the reasoning behind it*.
-Let’s go deep into the **theory and logic** behind this `Abort` function step by step, like a true computer scientist 👇
+**theory and logic** behind this `Abort` function step by step, like a true computer scientist 👇
 
 ---
 
