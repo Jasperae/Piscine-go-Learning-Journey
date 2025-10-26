@@ -27,6 +27,7 @@ git clone https://((DOMAIN))/git/choumi/((ROOT)).git
 This command needs to be adapted with **your own username**.
 
 
+
 #### 2- set
 
 Once the repository is created, use your code editor to write your first shell script called `hello.sh`
@@ -45,6 +46,7 @@ $
 ```
 
 
+
 #### 3- go-say-hello
 
 After that the `hello.sh` is executing correctly, it needs to be uploaded to the repository with the following commands:
@@ -56,6 +58,7 @@ After that the `hello.sh` is executing correctly, it needs to be uploaded to the
 Once these steps are applied, the file can now be submitted for grading on the platform by clicking on the "RUN INTRODUCTION TEST" button.
 
 This action will run the tests on your submitted `hello.sh` file.
+
 
 
 ### Recommendation
