@@ -179,6 +179,8 @@ chmod 604 8
 chmod 402 9
 chmod 401 A
 
+***
+
 #!/bin/bash
 
 mkdir 0
@@ -187,63 +189,75 @@ touch -t 198601050000 0
 
 chmod 401 0
 
+***
 touch 1
 
 touch -t 198611130001 1
 
 chmod 402 1
 
+***
 touch 2
 
 touch -t 198803050010 2
 
 chmod 604 2
 
+***
 ln -s 0 3
 
 touch -h -t 199002160011 3
 
+***
 touch 4
 
 touch -t 199010070100 4
 
 chmod 510 4
 
+***
 touch 5
 
 touch -t 199011070101 5
 
 chmod 460 5
 
+
+***
 touch 6
 
 touch -t 199102080110 6
 
 chmod 460 6
 
+***
 touch 7
 
 touch -t 199103080111 7
 
 chmod 510 7
 
+***
 touch 8 
 
 touch -t 199405201000 8
 
 chmod 604 8
 
+***
 touch 9
 
 touch -t 199406101001 9
 
 chmod 402 9
 
+***
 mkdir A
 
 touch -t 199504101010 A
 
 chmod 401 A
+
 
 tar -cf done.tar *
 
@@ -261,3 +275,4 @@ git commit -m "Remove make-it-better folder from repo"
 git push
 
 # Big lesson — Always start from a clear piscine-go folder before pushing
+
