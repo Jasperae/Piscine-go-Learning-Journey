@@ -1,16 +1,15 @@
-package main
+package piscine
 
-import (
-	"piscine"
+func JumpOver(str string) string {
+	result := ""
+	index := 0
 
-	"github.com/01-edu/z01"
-)
-
-func main() {
-	result := piscine.Rot14("Hello! How are You?")
-
-	for _, r := range result {
-		z01.PrintRune(r)
+	for _, char := range str {
+		if index%3 == 2 {
+			result += string(char)
+		}
+		index++
 	}
-	z01.PrintRune('\n')
+
+	return result + "\n"
 }

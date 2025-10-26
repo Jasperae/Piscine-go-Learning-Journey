@@ -1,0 +1,7 @@
+#!/bin/bash
+# show things in current dir and subdirs that:
+#  - start with 'a'  (a*)
+#  - OR end with 'z'  (*z)
+#  - OR start with 'z' and end with 'a!'  (z*a!)
+# single quotes prevent shell/history expansion of '!'
+find . \( -name 'a*' -o -name '*z' -o -name 'z*a!' \) -print
