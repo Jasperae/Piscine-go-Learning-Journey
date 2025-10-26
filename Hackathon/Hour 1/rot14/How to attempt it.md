@@ -29,15 +29,15 @@ To manipulate letters mathematically (i.e., to shift them), we must understand h
 All ROT ciphers are a form of the Caesar cipher, which uses a fixed number for the character shift. Different variations exist for different character sets and shift amounts: 
 
    ## ROT-13:
-    The most well-known rotation cipher, it shifts letters by 13 places. Because 13 is half of 26, applying the cipher twice returns the original text, making it its own inverse.
+The most well-known rotation cipher, it shifts letters by 13 places. Because 13 is half of 26, applying the cipher twice returns the original text, making it its own inverse.
    ## ROT-5:
-    A cipher used specifically for numbers, rotating the digits 0-9 by 5 positions.
+A cipher used specifically for numbers, rotating the digits 0-9 by 5 positions.
    ## ROT-18:
-    A combination cipher that applies ROT-13 to letters and ROT-5 to numbers.
+A combination cipher that applies ROT-13 to letters and ROT-5 to numbers.
    ## ROT-47:
-    This cipher rotates all printable ASCII characters (characters 33 to 126) by 47 positions. It affects letters, numbers, and symbols.
+This cipher rotates all printable ASCII characters (characters 33 to 126) by 47 positions. It affects letters, numbers, and symbols.
    ## ROT-1 to ROT-25:
-    In addition to the well-known variants, any shift amount from 1 to 25 can be used, with each producing a different output. ROT-26 would produce the original text. 
+In addition to the well-known variants, any shift amount from 1 to 25 can be used, with each producing a different output. ROT-26 would produce the original text. 
 
 ## The Go Implementation Logic
 
