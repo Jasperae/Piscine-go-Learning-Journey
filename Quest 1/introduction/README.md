@@ -26,7 +26,7 @@ git clone https://((DOMAIN))/git/choumi/((ROOT)).git
 
 This command needs to be adapted with **your own username**.
 
-
+***
 
 #### 2- set
 
@@ -34,6 +34,7 @@ Once the repository is created, use your code editor to write your first shell s
 
 When executed, this script must print `Hello choumi!`, where `choumi` is your username.
 
+***
 
 ##### Usage
 
@@ -45,7 +46,7 @@ Hello choumi!
 $
 ```
 
-
+***
 
 #### 3- go-say-hello
 
@@ -59,7 +60,7 @@ Once these steps are applied, the file can now be submitted for grading on the p
 
 This action will run the tests on your submitted `hello.sh` file.
 
-
+***
 
 ### Recommendation
 
