@@ -1,4 +1,4 @@
-That's a great question\! Understanding the **theory** behind the `rot14` function involves a few core programming and cryptographic concepts, primarily: **character encoding**, **iteration**, and the **Caesar cipher** (specifically, a ROT-14 variation).
+First Understand all the theory around this quest! Understanding the **theory** behind the `rot14` function involves a few core programming and cryptographic concepts, primarily: **character encoding**, **iteration**, and the **Caesar cipher** (specifically, a ROT-14 variation).
 
 Here's a breakdown of the theory and logic needed to write the `Rot14` function in Go.
 
