@@ -274,5 +274,6 @@ git rm -r make-it-better
 git commit -m "Remove make-it-better folder from repo"
 git push
 
-# Big lesson — Always start from a clear piscine-go folder before pushing
+## Big lesson — Always start from a clean piscine-go folder before pushing, don't keep duplicates or anything that will make you files to be clashing, when pusing and pull to and from your repo.
+
 
