@@ -1,23 +1,16 @@
-package piscine
+package main
 
-import "fmt"
+import (
+	"piscine"
 
-func DealAPackOfCards(deck []int) {
-	i := 0
-	player := 1
-	fmt.Printf("Player %d: ", player)
-	for {
-		fmt.Printf("%d", deck[i])
-		i++
-		if i%3 == 0 {
-			if i == 12 {
-				break
-			}
-			player++
-			fmt.Printf("\nPlayer %d: ", player)
-		} else {
-			fmt.Printf(", ")
-		}
+	"github.com/01-edu/z01"
+)
+
+func main() {
+	result := piscine.Rot14("Hello! How are You?")
+
+	for _, r := range result {
+		z01.PrintRune(r)
 	}
-	fmt.Printf("\n")
+	z01.PrintRune('\n')
 }
