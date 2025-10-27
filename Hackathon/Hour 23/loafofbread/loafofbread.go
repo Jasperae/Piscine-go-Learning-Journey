@@ -1,41 +1,25 @@
 package piscine
 
 func LoafOfBread(str string) string {
-	// Count non-space characters
-	count := 0
-	for _, r := range str {
-		if r != ' ' {
-			count++
+	myStr := ""
+	if str == "" {
+		return "\n"
+	}
+	if len(str) < 5 {
+		return "invalid Output\n"
+	}
+	f := 0
+	for _, c := range str {
+		if c != ' ' && f != 5 {
+			myStr += string(c)
+			f++
+		} else if f == 5 {
+			myStr += " "
+			f = 0
 		}
 	}
-	if count < 5 {
-		return "Invalid Output\n"
+	if len(myStr) > 0 && myStr[len(myStr)-1] == ' ' {
+		myStr = myStr[:len(myStr)-1]
 	}
-
-	result := ""
-	wordLen := 0
-	skip := false
-
-	for _, r := range str {
-		if r == ' ' {
-			continue
-		}
-		if skip {
-			skip = false
-			continue
-		}
-		result += string(r)
-		wordLen++
-		if wordLen == 5 {
-			result += " "
-			wordLen = 0
-			skip = true
-		}
-	}
-
-	// Trim trailing space if present
-	if len(result) > 0 && result[len(result)-1] == ' ' {
-		result = result[:len(result)-1]
-	}
-	return result + "\n"
+	return myStr + "\n"
 }
