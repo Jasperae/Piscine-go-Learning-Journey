@@ -1,0 +1,159 @@
+Absolutely! Let's break this down so you understand **every single part** of the solution—not just how it works, but **why** it works. By the end, you’ll be able to write your own sorting algorithm from scratch and even improve it.
+
+---
+
+## 🧠 Goal of the Function
+
+We want to **sort a slice of integers in ascending order**, meaning from smallest to largest.
+
+Given:
+```go
+[]int{5, 4, 3, 2, 1, 0}
+```
+
+We want:
+```go
+[]int{0, 1, 2, 3, 4, 5}
+```
+
+---
+
+## ✅ Full Code
+
+```go
+package piscine
+
+func SortIntegerTable(t []int) {
+	for i := 0; i < len(t); i++ {
+		for j := 0; j < len(t); j++ {
+			if t[i] < t[j] {
+				a := t[j]
+				t[j] = t[i]
+				t[i] = a
+			}
+		}
+	}
+}
+```
+
+---
+
+## 🔍 Step-by-Step Breakdown
+
+### 1. `package piscine`
+
+- This declares the package name.
+- It allows this function to be used in other files that import `piscine`.
+
+---
+
+### 2. `func SortIntegerTable(t []int)`
+
+- This defines a function named `SortIntegerTable`.
+- It takes a **slice of integers** `t` as input.
+- The function modifies the slice **in place** (no return value needed).
+
+---
+
+### 3. `for i := 0; i < len(t); i++ {`
+
+- This is the **outer loop**.
+- It goes through each element in the slice.
+- `i` represents the current index we're comparing **from**.
+
+---
+
+### 4. `for j := 0; j < len(t); j++ {`
+
+- This is the **inner loop**.
+- It compares the element at index `i` with every other element at index `j`.
+
+---
+
+### 5. `if t[i] < t[j] {`
+
+- This is the **key comparison**.
+- If the element at `i` is **less than** the element at `j`, we **swap** them.
+- Why? Because we want the **smaller numbers to move toward the beginning** of the slice.
+
+---
+
+### 6. Swapping the values
+
+```go
+a := t[j]
+t[j] = t[i]
+t[i] = a
+```
+
+- This is a **classic swap** using a temporary variable `a`.
+- We store `t[j]` in `a`, then assign `t[i]` to `t[j]`, and finally assign `a` (original `t[j]`) to `t[i]`.
+- This ensures the values are exchanged without losing any data.
+
+---
+
+## 🔁 What Sorting Algorithm Is This?
+
+This is a **variation of bubble sort**, but not the most efficient version.
+
+- It compares **every pair** of elements.
+- It swaps them if they’re out of order.
+- Time complexity: **O(n²)** — not great for large slices, but fine for small ones.
+
+---
+
+## 🧪 Example Walkthrough
+
+Let's say `t = [5, 4, 3]`.
+
+### First outer loop (`i = 0`):
+- Compare `t[0] = 5` with `t[0] = 5` → no swap
+- Compare `t[0] = 5` with `t[1] = 4` → swap → `t = [4, 5, 3]`
+- Compare `t[0] = 4` with `t[2] = 3` → swap → `t = [3, 5, 4]`
+
+### Second outer loop (`i = 1`):
+- Compare `t[1] = 5` with `t[0] = 3` → no swap
+- Compare `t[1] = 5` with `t[1] = 5` → no swap
+- Compare `t[1] = 5` with `t[2] = 4` → swap → `t = [3, 4, 5]`
+
+Now the slice is sorted!
+
+---
+
+## 🧼 Cleaner Version (Optional)
+
+Here’s a more efficient and idiomatic version using **bubble sort**:
+
+```go
+func SortIntegerTable(t []int) {
+	n := len(t)
+	for i := 0; i < n-1; i++ {
+		for j := 0; j < n-i-1; j++ {
+			if t[j] > t[j+1] {
+				t[j], t[j+1] = t[j+1], t[j]
+			}
+		}
+	}
+}
+```
+
+### Why is this better?
+
+- It avoids unnecessary comparisons.
+- It uses Go’s multiple assignment syntax to swap values cleanly.
+- It’s still O(n²), but faster in practice.
+
+---
+
+## ✅ Summary
+
+| Concept | Purpose |
+|--------|---------|
+| `for i` and `for j` | Loop through all pairs of elements |
+| `if t[i] < t[j]` | Check if elements are out of order |
+| `swap` | Exchange values to move smaller ones forward |
+| `[]int` | Slice of integers, passed by reference (in-place sorting) |
+
+---
+
+Would you like to try rewriting this using a different sorting algorithm like **selection sort** or **insertion sort**? Or maybe explore how to sort in **descending** order instead?
