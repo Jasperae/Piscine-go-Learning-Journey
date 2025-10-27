@@ -1,30 +1,27 @@
 package piscine
 
 func LoafOfBread(str string) string {
-	// First, count non-space characters
+	// Count non-space characters
 	count := 0
 	for _, r := range str {
 		if r != ' ' {
 			count++
 		}
 	}
-
-	// If fewer than 5 valid characters, return error
 	if count < 5 {
 		return "Invalid Output\n"
 	}
 
-	// Build result manually
 	result := ""
 	wordLen := 0
-	skipNext := false
+	skip := false
 
 	for _, r := range str {
 		if r == ' ' {
 			continue
 		}
-		if skipNext {
-			skipNext = false
+		if skip {
+			skip = false
 			continue
 		}
 		result += string(r)
@@ -32,11 +29,11 @@ func LoafOfBread(str string) string {
 		if wordLen == 5 {
 			result += " "
 			wordLen = 0
-			skipNext = true
+			skip = true
 		}
 	}
 
-	// Trim trailing space if needed and add newline
+	// Trim trailing space if present
 	if len(result) > 0 && result[len(result)-1] == ' ' {
 		result = result[:len(result)-1]
 	}
