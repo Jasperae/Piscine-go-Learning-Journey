@@ -1,34 +1,44 @@
 package piscine
 
-import "strings"
-
 func LoafOfBread(str string) string {
-	if str == "" {
-		return "\n"
+	// First, count non-space characters
+	count := 0
+	for _, r := range str {
+		if r != ' ' {
+			count++
+		}
 	}
-	if len(str) < 5 {
+
+	// If fewer than 5 valid characters, return error
+	if count < 5 {
 		return "Invalid Output\n"
 	}
-	var _str strings.Builder
-	j := 0
-	for i := 0; i < len(str); i++ {
-		if j < 5 && rune(str[i]) == ' ' {
+
+	// Build result manually
+	result := ""
+	wordLen := 0
+	skipNext := false
+
+	for _, r := range str {
+		if r == ' ' {
 			continue
 		}
-		if j == 5 {
-			if i != len(str)-1 && str[i+1] == ' ' {
-				continue
-			}
-			if i == len(str)-1 {
-				break
-			}
-			_str.WriteRune(' ')
-			j = 0
+		if skipNext {
+			skipNext = false
 			continue
 		}
-		_str.WriteRune(rune(str[i]))
-		j++
+		result += string(r)
+		wordLen++
+		if wordLen == 5 {
+			result += " "
+			wordLen = 0
+			skipNext = true
+		}
 	}
-	_str.WriteRune(rune('\n'))
-	return (_str.String())
+
+	// Trim trailing space if needed and add newline
+	if len(result) > 0 && result[len(result)-1] == ' ' {
+		result = result[:len(result)-1]
+	}
+	return result + "\n"
 }
