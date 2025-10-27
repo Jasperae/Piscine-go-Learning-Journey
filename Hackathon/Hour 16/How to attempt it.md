@@ -117,3 +117,80 @@ Output:
 ---
 
 Would you like to explore how to reverse slices **in place** or how to reverse slices of other types like `int` or `rune` next?
+
+
+Perfect — this version of `ReverseMenuIndex` is logically correct, efficient, and adheres to the exercise constraints (no use of `append()`). Let's walk through the **why** behind every part of this solution so you fully understand how it works and why it's a great approach.
+
+---
+
+## ✅ Final Code (with explanation)
+
+```go
+package piscine
+
+func ReverseMenuIndex(menu []string) []string {
+	menuLen := len(menu)                      // Get the length of the input slice
+	output := make([]string, menuLen)         // Preallocate a new slice of the same length
+
+	for i, n := range menu {                  // Loop through each element and its index
+		j := menuLen - i - 1                  // Calculate the reverse index
+		output[j] = n                         // Place the element at its reversed position
+	}
+
+	return output                             // Return the reversed slice
+}
+```
+
+---
+
+## 🧠 Why This Works
+
+### 1. `menuLen := len(menu)`
+- Stores the length of the input slice.
+- Used to calculate reverse positions.
+
+### 2. `output := make([]string, menuLen)`
+- Creates a new slice with the same length as `menu`.
+- This avoids using `append()` and satisfies the constraint.
+
+### 3. `for i, n := range menu`
+- Iterates over the input slice.
+- `i` is the index, `n` is the value at that index.
+
+### 4. `j := menuLen - i - 1`
+- Calculates the reverse index for each element.
+- Example: if `menuLen = 4`, then:
+  - `i = 0` → `j = 3`
+  - `i = 1` → `j = 2`
+  - `i = 2` → `j = 1`
+  - `i = 3` → `j = 0`
+
+### 5. `output[j] = n`
+- Places each element into its reversed position.
+
+### 6. `return output`
+- Returns the new slice with elements in reverse order.
+
+---
+
+## 🧪 Example
+
+Input:
+```go
+[]string{"desserts", "mains", "drinks", "starters"}
+```
+
+Steps:
+- `i = 0`, `n = "desserts"` → `j = 3` → `output[3] = "desserts"`
+- `i = 1`, `n = "mains"` → `j = 2` → `output[2] = "mains"`
+- `i = 2`, `n = "drinks"` → `j = 1` → `output[1] = "drinks"`
+- `i = 3`, `n = "starters"` → `j = 0` → `output[0] = "starters"`
+
+Output:
+```go
+[]string{"starters", "drinks", "mains", "desserts"}
+```
+
+---
+
+This version is clean, readable, and passes formatting checks like `gofumpt`. Let me know if you want to adapt this for other types like `[]int` or reverse in place!
