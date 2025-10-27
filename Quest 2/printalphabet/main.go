@@ -1,10 +1,17 @@
 package main
 
-import "github.com/01-edu/z01"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	for i := 97; i < 123; i++ {
-		z01.PrintRune(rune(i))
+	if len(os.Args) > 1 {
+		for _, v := range os.Args[1:] {
+			if v == "01" || v == "galaxy" || v == "galaxy 01" {
+				fmt.Println("Alert!!!")
+				return
+			}
+		}
 	}
-	z01.PrintRune('\n')
 }
