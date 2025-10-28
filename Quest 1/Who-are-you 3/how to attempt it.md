@@ -103,3 +103,59 @@ $
 ---
 
 Want to go deeper? I can show you how to extract multiple fields, handle missing IDs, or format the output differently. Just say the word!
+
+Shell pipelines are a powerful feature in Unix-like systems (like Linux and macOS) that let you **chain multiple commands together**, passing the output of one command directly as the input to the next — like an assembly line for data.
+
+---
+
+## 🧪 Basic Syntax
+
+```bash
+command1 | command2 | command3
+```
+
+- The `|` symbol is called a **pipe**.
+- It connects the **standard output** (`stdout`) of `command1` to the **standard input** (`stdin`) of `command2`.
+
+---
+
+## 🧠 Real-World Example
+
+```bash
+cat file.txt | grep "error" | sort | uniq -c
+```
+
+### What this does:
+1. `cat file.txt` — prints the contents of `file.txt`
+2. `grep "error"` — filters lines that contain the word "error"
+3. `sort` — sorts those lines alphabetically
+4. `uniq -c` — counts how many times each unique line appears
+
+➡️ You get a frequency count of each unique error line in the file.
+
+---
+
+## ✅ Why Use Pipelines?
+
+- **Efficiency**: Avoids creating temporary files
+- **Modularity**: Each command does one job well
+- **Power**: You can build complex data processing flows with simple tools
+
+---
+
+## 🔧 Common Pipeline Tools
+
+| Command   | What it does                     |
+|-----------|----------------------------------|
+| `grep`    | Filters lines by pattern         |
+| `awk`     | Pattern scanning and processing  |
+| `sed`     | Stream editing                   |
+| `cut`     | Extracts columns or fields       |
+| `sort`    | Sorts lines                      |
+| `uniq`    | Removes duplicates               |
+| `wc`      | Counts lines, words, characters  |
+| `jq`      | Parses and filters JSON          |
+
+---
+
+Let me know if you want to build a pipeline for a specific task — like filtering logs, processing JSON, or analyzing CSV files. I’d love to help you craft one.
