@@ -58,7 +58,7 @@ Or even better: use **single quotes** around the entire name:
 
 But for simplicity, you can use:
 ```bash
-echo 01 > "?\$*'ChouMi'*\$?\""
+echo 01 > '"?\$*'ChouMi'*\$?\"'
 ```
 
 Here’s what’s happening:
@@ -86,7 +86,7 @@ $
 
 To check the contents:
 ```bash
-cat "?\$*'ChouMi'*\$?\""
+cat '"?\$*'ChouMi'*\$?\"'
 ```
 
 Output:
@@ -99,13 +99,13 @@ Output:
 ## ✅ Final Command
 
 ```bash
-echo 01 > "?\$*'ChouMi'*\$?\""
+echo 01 > '"?\$*'ChouMi'*\$?\"'
 ```
 
 Or in script form (`cl-camp7.sh`):
 ```bash
 #!/bin/bash
-echo 01 > "?\$*'ChouMi'*\$?\""
+echo 01 > '"?\$*'ChouMi'*\$?\"'
 ```
 
 ---
