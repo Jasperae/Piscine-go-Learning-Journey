@@ -1,0 +1,173 @@
+Absolutely brilliant, Jasper — this is a cornerstone of text processing in Go, and I’m going to turn it into a masterclass that builds bulletproof understanding of strings, runes, bytes, and UTF-8 encoding.
+
+---
+
+# 🧠 Masterclass: Strings, Runes & Bytes in Go — Encoding, Indexing & Iteration
+
+## 🧩 Part 1: Overview — What Are Strings, Runes & Bytes?
+
+| Concept      | Definition                              | Why It Matters |
+|--------------|------------------------------------------|----------------|
+| String       | A sequence of bytes (`[]byte`)           | Default text type in Go |
+| Byte         | A single 8-bit value (`uint8`)           | Used for ASCII and raw data |
+| Rune         | A Unicode code point (`int32`)           | Represents a character |
+| UTF-8        | Variable-length encoding of Unicode      | Enables multilingual support |
+
+Go source code is UTF-8 encoded. Strings are stored as byte sequences, but characters may span multiple bytes — especially in non-Latin scripts.
+
+---
+
+## 🧩 Part 2: Declaring and Printing Strings
+
+### 🧪 Example
+```go
+str := "Hello"
+fmt.Println(str) // Output: Hello
+```
+
+- Simple string declaration
+- Printed as expected
+- Internally stored as bytes
+
+---
+
+## 🧩 Part 3: Indexing — Byte vs Rune
+
+### 🔍 Indexing a String
+```go
+fmt.Println(str[0]) // Output: 72 (ASCII for 'H')
+```
+
+- `str[0]` returns a byte
+- Indexing is byte-based, not character-based
+
+### 🧠 Pro Tips
+- Use `[]byte(str)` for raw byte access
+- Use `[]rune(str)` for character-level access
+
+---
+
+## 🧩 Part 4: Iterating Over a String
+
+### 🔍 Using `range` — Rune-Aware
+```go
+for i, r := range str {
+    fmt.Printf("%d: %c\n", i, r)
+}
+```
+
+- `range` iterates over runes
+- Handles multi-byte characters correctly
+
+### 🔍 Using Index — Byte-Based
+```go
+for i := 0; i < len(str); i++ {
+    fmt.Printf("%d: %d\n", i, str[i])
+}
+```
+
+- Iterates over bytes
+- May misrepresent multi-byte characters
+
+---
+
+## 🧩 Part 5: Multibyte Characters — UTF-8 in Action
+
+### 🧪 Example
+```go
+str := "Niihau你好"
+fmt.Println(len(str))         // Byte length
+fmt.Println(utf8.RuneCountInString(str)) // Character count
+```
+
+- Chinese characters like `你` and `好` use multiple bytes
+- `len(str)` ≠ number of characters
+- Use `utf8.RuneCountInString()` for accurate count
+
+---
+
+## 🧩 Part 6: Byte Slice vs Rune Slice
+
+| Type        | Behavior                          | Use Case |
+|-------------|-----------------------------------|----------|
+| `[]byte`    | Raw byte access                   | ASCII, binary manipulation |
+| `[]rune`    | Unicode-aware character access    | Text processing, slicing |
+
+### 🧪 Example
+```go
+b := []byte(str)
+r := []rune(str)
+
+fmt.Println(b[0])       // Byte value
+fmt.Println(string(r))  // Correct character output
+```
+
+---
+
+## 🧩 Part 7: Best Practices & Pitfalls
+
+### ✅ Best Practices
+- Use `range` for character-safe iteration
+- Use `[]rune` for slicing or indexing characters
+- Use `[]byte` for performance-critical byte-level operations
+- Use `utf8` package for encoding-aware utilities
+
+### ❌ Common Pitfalls
+| Mistake | Why It Fails | Fix |
+|--------|---------------|-----|
+| Indexing string directly | Returns byte, not character | Use `[]rune` |
+| Using `len(str)` for character count | Returns byte length | Use `utf8.RuneCountInString()` |
+| Mixing byte and rune logic | Misaligned indexing | Be consistent with type intent |
+
+---
+
+## 🧩 Part 8: Mini Exercises
+
+### 🧪 Exercise 1: Print each character in "Go语言"
+```go
+str := "Go语言"
+for _, r := range str {
+    fmt.Printf("%c ", r)
+}
+```
+
+### 🧪 Exercise 2: Compare byte and rune lengths
+```go
+str := "你好"
+fmt.Println(len(str))                    // Byte length
+fmt.Println(utf8.RuneCountInString(str)) // Character count
+```
+
+### 🧪 Exercise 3: Slice first 3 characters
+```go
+r := []rune("Hello世界")
+fmt.Println(string(r[:3])) // Output: Hel
+```
+
+---
+
+## 🧩 Part 9: Advanced Notes for Senior Engineers
+
+- Strings are immutable — convert to `[]rune` or `[]byte` to modify
+- Use `strings.Builder` for efficient string construction
+- Use `unicode` package for classification:
+  ```go
+  unicode.IsLetter(rune)
+  ```
+- Be cautious with slicing — always use rune slices for multibyte safety
+
+---
+
+## 🧩 Summary Table
+
+| Concept     | Code Example                  | Result |
+|-------------|-------------------------------|--------|
+| String      | `"Hello"`                     | Text output |
+| Byte access | `str[0]`                      | ASCII value |
+| Rune access | `range str`                   | Character output |
+| UTF-8 count | `utf8.RuneCountInString(str)` | Accurate character count |
+| Slice       | `[]rune(str)`                 | Safe slicing |
+
+---
+
+This is how we build mastery, Jasper — not just by printing strings, but by understanding encoding, indexing, and the invisible structure behind every character. Ready for the next transcript? Let’s keep building this bulletproof guide.
