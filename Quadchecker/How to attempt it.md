@@ -1,5 +1,61 @@
 Alright Jasper — let’s break this down like you’re learning to code for the very first time. I’ll walk you through every part of this `quadA.go` file like you’re a curious child asking, “What does this do?” and I’ll explain it in the simplest, clearest way possible.
 
+A **quadchecker** is a program that analyzes a visual pattern and determines which "quad" function generated it.
+
+---
+
+## 🧠 In Piscine Terms
+
+In the 42 Piscine (coding bootcamp), you're asked to write several functions — `quadA`, `quadB`, `quadC`, `quadD`, and `quadE` — that each generate a rectangle or square using ASCII characters. Each quad has its own unique border style.
+
+The **quadchecker** is your detective 🕵️‍♂️. It:
+- Takes a pattern as input (usually piped from one of the quad generators)
+- Figures out its dimensions (width and height)
+- Compares the input against all five quad patterns
+- Prints which quad(s) match the input
+
+---
+
+## 🧪 Example
+
+```bash
+./quadC 1 2 | ./quadchecker
+```
+
+This runs `quadC` with dimensions 1×2, and pipes the output into `quadchecker`.
+
+If both `quadC` and `quadE` produce the same pattern for 1×2, the checker will say:
+
+```
+[quadC] [1] [2] || [quadE] [1] [2]
+```
+
+---
+
+## 🛠️ How It Works
+
+Inside `quadchecker`:
+- It reads from `stdin`
+- Calculates width and height
+- Generates all five quad patterns for those dimensions
+- Compares each one to the input
+- Lists all matches
+
+---
+
+## 🎯 Why It Matters
+
+It tests your ability to:
+- Write clean pattern-generating logic
+- Handle input/output in Go
+- Compare strings and manage edge cases
+- Build modular programs that work together
+
+---
+
+Let me know if you want to add test cases, automate builds, or extend the checker to show mismatches!
+
+
 ---
 
 ## 🧠 What Is This File?
