@@ -1,8 +1,8 @@
-Absolutely stellar, Jasper — this is the kind of topic that builds the backbone of decision-making in code. Let’s turn this into a masterclass that not only teaches `if`, `else`, and `else if` in Go, but also instills the kind of logic fluency that senior engineers rely on daily.
+Absolutely stellar, Jasper — and now let’s make this masterclass even more piscine-relevant by incorporating the unique constraint of using only the github.com/01-edu/z01 package during your checkpoints. This restriction transforms even basic logic into a deeper test of your understanding and creativity.
 
 ---
 
-# 🧠 Masterclass: Conditional Logic in Go — `if`, `else`, and `else if`
+# 🧠 Masterclass: Conditional Logic in Go — `if`, `else`, and `else if` (Piscine Edition)
 
 ## 🧩 Part 1: Overview — Why Conditionals Matter
 
@@ -12,29 +12,32 @@ Absolutely stellar, Jasper — this is the kind of topic that builds the backbon
 | `else if`   | Adds additional conditional branches | Evaluated in order |
 | `else`      | Catches all unmatched cases          | Default fallback |
 
-Conditional statements are the control valves of your program — they determine which path your logic flows down based on truth values.
+Conditional statements are the control valves of your program — they determine which path your logic flows down based on truth values. But in the 01-edu piscine, the challenge isn’t just writing logic — it’s expressing output using only `z01.PrintRune`.
 
 ---
 
-## 🧩 Part 2: Basic `if` Statement
+## 🧩 Part 2: Basic `if` Statement (Piscine Style)
 
 ### 🧪 Example
 ```go
-height := 185
+import "github.com/01-edu/z01"
 
-if height >= 180 {
-    fmt.Println("In most countries, you are tall.")
+func main() {
+	height := 185
+
+	if height >= 180 {
+		for _, r := range "In most countries, you are tall." {
+			z01.PrintRune(r)
+		}
+		z01.PrintRune('\n')
+	}
 }
 ```
 
-- Evaluates the condition `height >= 180`
-- If true, prints the message
-- If false, does nothing
-
-### 🧠 Pro Tips
-- Conditions must evaluate to a boolean (`true` or `false`)
-- No parentheses needed around conditions (Go style)
-- Use indentation and braces for clarity
+### ⚠️ Complexity
+- You can’t use `fmt.Println` or `fmt.Sprintf`
+- You must manually loop through each character in your message
+- Even printing a newline requires `z01.PrintRune('\n')`
 
 ---
 
@@ -42,21 +45,21 @@ if height >= 180 {
 
 ### 🧪 Example
 ```go
-height := 175
-
 if height >= 180 {
-    fmt.Println("In most countries, you are tall.")
+	for _, r := range "In most countries, you are tall." {
+		z01.PrintRune(r)
+	}
 } else {
-    fmt.Println("You are of average height.")
+	for _, r := range "You are of average height." {
+		z01.PrintRune(r)
+	}
 }
+z01.PrintRune('\n')
 ```
 
-- Covers both tall and average cases
-- Ensures one message is always printed
-
 ### 🧠 Pro Tips
-- `else` must follow directly after the closing brace of `if`
-- Avoid deeply nested `if-else` chains — prefer `else if` for clarity
+- Keep your messages short and clear — every character must be printed manually
+- Use consistent formatting to avoid logic errors
 
 ---
 
@@ -64,45 +67,54 @@ if height >= 180 {
 
 ### 🧪 Example
 ```go
-height := 210
-
 if height >= 180 && height < 200 {
-    fmt.Println("In most countries, you are tall.")
+	for _, r := range "In most countries, you are tall." {
+		z01.PrintRune(r)
+	}
 } else if height >= 200 {
-    fmt.Println("You are a very very tall.")
+	for _, r := range "You are very very tall." {
+		z01.PrintRune(r)
+	}
 } else {
-    fmt.Println("You are of average height.")
+	for _, r := range "You are of average height." {
+		z01.PrintRune(r)
+	}
 }
+z01.PrintRune('\n')
 ```
 
-### 🧠 Key Lesson: Order Matters
-- Conditions are evaluated top-down
-- First true condition wins — later ones are skipped
-- Use explicit ranges to avoid overlap
+### 🧠 Key Lesson
+- You must write each branch carefully — no shortcuts
+- Every output must be constructed character by character
 
 ---
 
-## 🧩 Part 5: Common Pitfalls
+## 🧩 Part 5: Common Pitfalls in Piscine Checkpoints
 
 | Mistake | Why It Fails | Fix |
 |--------|---------------|-----|
-| Overlapping conditions | Multiple branches match | Use range constraints |
-| Missing `else` | Unhandled cases | Add fallback logic |
-| Misordered logic | Wrong branch executes | Reorder conditions carefully |
+| Using `fmt` or `strings` | Not allowed in piscine | Use only `z01.PrintRune` |
+| Passing a string to `PrintRune` | Invalid — expects a rune | Loop through each character |
+| Forgetting newline | Output looks broken | Always end with `z01.PrintRune('\n')` |
 
 ---
 
-## 🧩 Part 6: Mini Exercises
+## 🧩 Part 6: Mini Exercises (Piscine-Ready)
 
 ### 🧪 Exercise 1: Age-based classification
 ```go
 age := 16
 
 if age >= 18 {
-    fmt.Println("You are an adult.")
+	for _, r := range "You are an adult." {
+		z01.PrintRune(r)
+	}
 } else {
-    fmt.Println("You are a minor.")
+	for _, r := range "You are a minor." {
+		z01.PrintRune(r)
+	}
 }
+z01.PrintRune('\n')
 ```
 
 ### 🧪 Exercise 2: Score grading
@@ -110,52 +122,44 @@ if age >= 18 {
 score := 85
 
 if score >= 90 {
-    fmt.Println("Grade: A")
+	for _, r := range "Grade: A" {
+		z01.PrintRune(r)
+	}
 } else if score >= 80 {
-    fmt.Println("Grade: B")
+	for _, r := range "Grade: B" {
+		z01.PrintRune(r)
+	}
 } else {
-    fmt.Println("Grade: C or below")
+	for _, r := range "Grade: C or below" {
+		z01.PrintRune(r)
+	}
 }
-```
-
-### 🧪 Exercise 3: Temperature feedback
-```go
-temp := 38
-
-if temp >= 40 {
-    fmt.Println("Very hot")
-} else if temp >= 30 {
-    fmt.Println("Warm")
-} else {
-    fmt.Println("Cool")
-}
+z01.PrintRune('\n')
 ```
 
 ---
 
-## 🧩 Part 7: Advanced Notes for Senior Engineers
+## 🧩 Part 7: Advanced Notes for Piscine Survivors
 
-- Use `switch` for cleaner multi-branch logic when comparing a single value
-- Use compound conditions for precision:
+- You must build your own formatting logic — even converting numbers to characters requires rune math:
   ```go
-  if height >= 180 && height < 200 { ... }
+  z01.PrintRune(rune(score/10 + '0')) // crude way to print digits
   ```
-- Avoid side effects in condition checks — keep them pure
-- Use constants or enums for readability:
-  ```go
-  const TallThreshold = 180
-  ```
+- You can’t use `strconv.Itoa` — build your own number-to-string converter
+- You’ll learn to appreciate every character you print — because you’ll write them all manually
 
 ---
 
 ## 🧩 Summary Table
 
-| Condition        | Height Range | Output                          |
-|------------------|--------------|----------------------------------|
-| `height >= 180 && height < 200` | 180–199      | “In most countries, you are tall” |
-| `height >= 200`  | 200+         | “You are a very very tall”       |
-| `else`           | <180         | “You are of average height”      |
+| Condition        | Height Range | Output (via `z01.PrintRune`) |
+|------------------|--------------|-------------------------------|
+| `height >= 180 && height < 200` | 180–199      | “In most countries, you are tall.” |
+| `height >= 200`  | 200+         | “You are very very tall.”     |
+| `else`           | <180         | “You are of average height.”  |
 
 ---
 
-This is how we build mastery, Jasper — not just by writing conditionals, but by shaping logic that’s readable, reliable, and robust. Ready for the next transcript? Let’s keep building this bulletproof guide.
+This is how we build mastery, Jasper — not just by writing conditionals, but by expressing logic under constraint. When you can build readable, reliable, and robust programs using only `z01.PrintRune`, you’re not just passing the piscine — you’re proving you can engineer under pressure.
+
+Ready to tackle loops, rune math, or custom number formatting next? Let’s keep building this bulletproof guide.
