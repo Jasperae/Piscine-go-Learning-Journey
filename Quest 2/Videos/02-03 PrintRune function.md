@@ -1,167 +1,149 @@
-Absolutely brilliant, Jasper — this is the kind of topic that forges a deep understanding of Go’s type system and character encoding. Let’s turn this into a masterclass that not only teaches how to use `PrintRune`, but also builds rock-solid intuition around runes, strings, and byte-level manipulation in Go.
+Absolutely brilliant, Jasper — and now let’s tailor this masterclass to your **piscine checkpoint reality**, where you're restricted to using only the `github.com/01-edu/z01` package. That constraint turns character handling into a true test of your understanding of Go’s type system, Unicode encoding, and low-level output control.
 
 ---
 
-# 🧠 Masterclass: Character Handling in Go with `PrintRune`
+# 🧠 Piscine Masterclass: Character Handling in Go with `z01.PrintRune`
 
-## 🧩 Part 1: Overview — Why `PrintRune` Matters
+## 🧩 Part 1: Why `PrintRune` Is a Big Deal
 
 | Concept     | Purpose                                      | Why It’s Important |
 |-------------|----------------------------------------------|---------------------|
-| `PrintRune` | Outputs a single Unicode code point (rune)   | Reinforces type safety and encoding awareness |
-| Rune        | Represents a Unicode character (`int32`)     | Enables precise character-level control |
-| String      | Sequence of bytes or runes                   | Requires indexing and casting for character access |
+| `PrintRune` | Outputs a single Unicode code point (rune)   | Forces precision and encoding awareness |
+| Rune        | Represents a Unicode character (`int32`)     | Enables exact character-level control |
+| String      | Sequence of bytes or runes                   | Must be manually unpacked for output |
 
-The `PrintRune` function is intentionally constrained to teach you how Go handles characters at the lowest level — byte by byte, rune by rune.
+In the piscine, you can’t use `fmt.Println`, `strings`, or `strconv`. So `z01.PrintRune` becomes your only tool for output — and mastering it means mastering Go’s character system.
 
 ---
 
-## 🧩 Part 2: Runes vs Strings — The Type Distinction
+## 🧩 Part 2: Runes vs Strings — Know the Difference
 
-### 🔍 What is a Rune?
-A rune is an alias for `int32` and represents a single Unicode code point.
+### 🔍 What Is a Rune?
+A rune is an alias for `int32` and represents a single Unicode character.
 
 | Literal | Type   | Meaning                     |
 |---------|--------|-----------------------------|
 | `'A'`   | rune   | Unicode code point 65       |
-| `"A"`   | string | Sequence of bytes (not a rune) |
+| `"A"`   | string | Sequence of bytes           |
 
-### 🧠 Pro Tips
-- Use single quotes (`'A'`) for runes.
-- Use double quotes (`"A"`) for strings.
-- Strings are not directly compatible with `PrintRune`.
+### 🧠 Piscine Tip
+- Use single quotes (`'A'`) for runes — required by `PrintRune`
+- Double quotes (`"A"`) are strings — not accepted by `PrintRune`
+- You must loop through strings to print them character by character
 
 ---
 
-## 🧩 Part 3: Using `PrintRune` — The Right Way
+## 🧩 Part 3: Correct Usage of `z01.PrintRune`
 
-### ✅ Correct Usage
+### ✅ Valid Examples
 ```go
-package main
+z01.PrintRune('A')          // prints A
+z01.PrintRune(rune(65))     // prints A
+```
 
-import "fmt"
+### ❌ Invalid Examples
+```go
+z01.PrintRune("A")          // ❌ string, not rune
+z01.PrintRune(65)           // ❌ int, not rune
+```
 
-func main() {
-    fmt.PrintRune('A') // ✅ prints A
+---
+
+## 🧩 Part 4: Printing a Full String
+
+Since `PrintRune` only prints one character at a time, you must loop through strings manually.
+
+### ✅ Helper Function
+```go
+func PrintString(s string) {
+	for _, r := range s {
+		z01.PrintRune(r)
+	}
 }
 ```
 
-### ❌ Incorrect Usage
+### 🧪 Usage
 ```go
-fmt.PrintRune("A")    // ❌ string, not rune
-fmt.PrintRune(65)     // ❌ int, not rune
-```
-
-### 🧠 Fix: Cast to Rune
-```go
-fmt.PrintRune(rune(65)) // ✅ prints A
+PrintString("You sef tall o!")
+z01.PrintRune('\n')
 ```
 
 ---
 
-## 🧩 Part 4: Printing Characters from a String
+## 🧩 Part 5: Indexing and Casting
 
-### 🧪 Example: Print First Character of a String
+### 🔍 Print First Character of a String
 ```go
 s := "Hello"
-fmt.PrintRune(rune(s[0])) // ✅ prints H
+z01.PrintRune(rune(s[0])) // prints H
 ```
 
-- `s[0]` returns a byte
-- `rune(s[0])` converts it to a Unicode code point
-
-### 🧠 Why This Works
-- Indexing a string returns a byte (`uint8`)
-- Casting to `rune` ensures correct character output
-- Without casting, you may get unexpected symbols
+- `s[0]` returns a byte (`uint8`)
+- You must cast it to `rune` to use with `PrintRune`
 
 ---
 
-## 🧩 Part 5: Looping Through a String
+## 🧩 Part 6: Looping Through a String
 
-### 🧪 Print Each Character One by One
+### 🔁 Byte-by-Byte (Manual)
 ```go
 s := "Hello"
 for i := 0; i < len(s); i++ {
-    fmt.PrintRune(rune(s[i]))
+	z01.PrintRune(rune(s[i]))
 }
 ```
 
-- Prints: `Hello`
-- Demonstrates byte-by-byte iteration with explicit casting
+### 🔁 Unicode-Safe (Recommended)
+```go
+for _, r := range "Gó!" {
+	z01.PrintRune(r)
+}
+```
 
-### 🧠 Pro Tips
-- Use `range` for Unicode-safe iteration:
-  ```go
-  for _, r := range s {
-      fmt.PrintRune(r)
-  }
-  ```
-- This handles multi-byte characters like emojis or accented letters
+- Handles multi-byte characters like `ó`, `ç`, or emojis
+- Essential for international text or special symbols
 
 ---
 
-## 🧩 Part 6: Key Insights Table
+## 🧩 Part 7: Common Pitfalls in the Piscine
 
-| Concept         | How It Works                              | Why It Matters |
-|------------------|--------------------------------------------|----------------|
-| Rune             | `'A'` or `rune(65)`                        | Required by `PrintRune` |
-| String vs Rune   | `"A"` is a string; `'A'` is a rune         | Type mismatch causes errors |
-| Indexing         | `s[0]` returns a byte                      | Must cast to rune for printing |
-| Looping          | Iterate and cast each byte to rune         | Enables full string output |
-
----
-
-## 🧩 Part 7: Best Practices & Pitfalls
-
-### ✅ Best Practices
-- Always use single quotes for rune literals
-- Cast bytes to runes when printing characters from strings
-- Use `range` for Unicode-aware iteration
-
-### ❌ Common Pitfalls
 | Mistake | Why It Fails | Fix |
 |--------|---------------|-----|
-| Using double quotes | `"A"` is a string | Use `'A'` |
-| Passing int to `PrintRune` | Not a rune | Use `rune(65)` |
-| Indexing without casting | Returns byte | Use `rune(s[i])` |
+| `"A"` instead of `'A'` | String, not rune | Use single quotes |
+| `PrintRune(65)`        | Int, not rune    | Cast: `rune(65)` |
+| `s[0]` without casting | Returns byte     | Use `rune(s[0])` |
 
 ---
 
-## 🧩 Part 8: Mini Exercises
+## 🧩 Part 8: Mini Piscine Exercises
 
-### 🧪 Exercise 1: Print 'G' using ASCII code
+### 🧪 Exercise 1: Print 'G' using ASCII
 ```go
-fmt.PrintRune(rune(71)) // prints G
+z01.PrintRune(rune(71)) // prints G
 ```
 
 ### 🧪 Exercise 2: Print each character of "Go!"
 ```go
 s := "Go!"
-for i := 0; i < len(s); i++ {
-    fmt.PrintRune(rune(s[i]))
+for _, r := range s {
+	z01.PrintRune(r)
 }
+z01.PrintRune('\n')
 ```
 
-### 🧪 Exercise 3: Unicode-safe iteration
+### 🧪 Exercise 3: Print a Unicode string
 ```go
-s := "Gó!"
-for _, r := range s {
-    fmt.PrintRune(r)
-}
+PrintString("Gó rocks!")
+z01.PrintRune('\n')
 ```
 
 ---
 
-## 🧩 Part 9: Advanced Notes for Senior Engineers
+## 🧩 Part 9: Advanced Notes for Piscine Survivors
 
-- Runes are UTF-8 aware and support multi-byte characters
-- Use `unicode` package for classification:
-  ```go
-  unicode.IsLetter('A') // true
-  ```
 - Use `[]rune(s)` to convert a string into a rune slice for safe indexing
-- Use `fmt.Printf("%c", r)` as an alternative to `PrintRune`
+- You can build your own `PrintInt`, `PrintBool`, and `PrintSlice` using `PrintRune`
+- Runes are UTF-8 aware — they support emojis, accented letters, and symbols
 
 ---
 
@@ -169,12 +151,12 @@ for _, r := range s {
 
 | Task                        | Code Example                     | Output |
 |-----------------------------|----------------------------------|--------|
-| Print rune literal          | `fmt.PrintRune('A')`             | A      |
-| Print from ASCII code       | `fmt.PrintRune(rune(66))`        | B      |
-| Print first char of string  | `fmt.PrintRune(rune(s[0]))`      | H      |
+| Print rune literal          | `z01.PrintRune('A')`             | A      |
+| Print from ASCII code       | `z01.PrintRune(rune(66))`        | B      |
+| Print first char of string  | `z01.PrintRune(rune(s[0]))`      | H      |
 | Print full string (manual)  | loop with `rune(s[i])`           | Hello  |
 | Print full string (Unicode) | `for _, r := range s`            | Gó!    |
 
 ---
 
-This is how we build mastery, Jasper — not just by printing characters, but by understanding the encoding, the types, and the mechanics behind every output. Ready for the next transcript? Let’s keep building this bulletproof guide.
+This is how we build piscine mastery, Jasper — not just by printing characters, but by understanding the encoding, the types, and the mechanics behind every output. Ready to build your own `PrintHex`, `PrintChar`, or even a custom formatter next? Let’s keep sharpening your toolkit.
