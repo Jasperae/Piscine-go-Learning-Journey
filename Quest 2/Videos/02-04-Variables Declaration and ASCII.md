@@ -1,25 +1,24 @@
-Absolutely phenomenal, Jasper — this is where Go’s type system meets the timeless elegance of ASCII. Let’s turn this into a masterclass that not only teaches the mechanics of rune handling and variable declarations, but also builds a deep intuition for encoding and type safety in Go.
+Absolutely phenomenal, Jasper — and now let’s make this piscine-proof. Since you’re working under the constraint of using only `github.com/01-edu/z01`, we’ll adapt this masterclass to reflect the real-world limitations of your checkpoint environment. No `fmt`, no `strconv`, no `unicode` — just raw Go, runes, and `z01.PrintRune`.
 
 ---
 
-# 🧠 Masterclass: Go Variable Declarations, ASCII Encoding & `PrintRune`
+# 🧠 Piscine Masterclass: Go Variable Declarations, ASCII Encoding & `z01.PrintRune`
 
-## 🧩 Part 1: Overview — Why ASCII and Runes Matter
+## 🧩 Part 1: Why ASCII and Runes Matter in the Piscine
 
-| Concept | Purpose | Relevance |
-|--------|---------|-----------|
-| ASCII | Maps characters to numeric codes | Foundation of text encoding |
-| Rune | Represents a Unicode code point in Go | Enables character-level operations |
-| `PrintRune` | Outputs a rune to the console | Requires correct type and syntax |
+| Concept     | Purpose                                  | Relevance in Checkpoints |
+|-------------|------------------------------------------|---------------------------|
+| ASCII       | Maps characters to numeric codes         | Helps you print letters using numbers |
+| Rune        | Represents a Unicode code point (`int32`) | Required by `z01.PrintRune` |
+| `PrintRune` | Outputs a single character               | Your only allowed output tool |
 
-Understanding how Go handles characters and their numeric representations is essential for system programming, encoding, and debugging.
+In the piscine, you’re not just learning Go — you’re learning how to think like a compiler. Every character you print must be intentional, type-safe, and rune-correct.
 
 ---
 
 ## 🧩 Part 2: ASCII — The Numeric Language of Characters
 
-### 🔍 What is ASCII?
-ASCII (American Standard Code for Information Interchange) assigns numeric codes to characters.
+### 🔍 What Is ASCII?
 
 | Character | Decimal Code |
 |-----------|--------------|
@@ -29,130 +28,133 @@ ASCII (American Standard Code for Information Interchange) assigns numeric codes
 | 0         | 48           |
 | Space     | 32           |
 
-### 🧠 Pro Tips
-- ASCII is a subset of UTF-8.
-- Useful for debugging, encoding, and byte-level operations.
-- Printable characters range from 32 to 126.
+### 🧠 Piscine Tip
+- You can print any ASCII character using its code:
+  ```go
+  z01.PrintRune(rune(65)) // prints A
+  ```
 
 ---
 
 ## 🧩 Part 3: Go Variable Declarations — Short vs Long Form
 
-### 🧪 Examples
+| Form   | Syntax               | Type Inference |
+|--------|----------------------|----------------|
+| Short  | `a := 10`            | Go infers `int` |
+| Long   | `var b rune = 'A'`   | Explicit rune   |
 
-| Form | Syntax | Type Inference |
-|------|--------|----------------|
-| Short | `a := 10` | Go infers `int` |
-| Long | `var b int = 10` | Explicit `int` |
-
-### 🧠 Pro Tips
-- Use short form for quick assignments.
-- Use long form for clarity or when declaring zero values.
-- Type inference follows the right-hand side of `:=`.
+### 🧠 Piscine Tip
+- Use `:=` for quick assignments.
+- Use `var` when you want to be explicit or declare zero values.
 
 ---
 
 ## 🧩 Part 4: Runes — Go’s Character Type
 
-### 🔍 What is a Rune?
-A rune in Go is an alias for `int32`, representing a Unicode code point.
+### 🔍 What Is a Rune?
+A rune is an alias for `int32` — it represents a single Unicode character.
 
-### 🧪 Examples
+| Literal | Type | Meaning             |
+|---------|------|---------------------|
+| `'A'`   | rune | Unicode code point 65 |
+| `"A"`   | string | Not allowed in `PrintRune` |
 
-| Literal | Type | Meaning |
-|--------|------|---------|
-| `'A'` | rune | Unicode code point 65 |
-| `"A"` | string | Sequence of bytes (not a rune) |
-
-### 🧠 Pro Tips
-- Use single quotes for runes (`'A'`).
-- Use double quotes for strings (`"A"`).
-- Runes can be printed with `fmt.Printf("%c", rune)` or `PrintRune`.
+### 🧠 Piscine Tip
+- Always use single quotes for characters: `'A'`
+- Strings like `"A"` must be looped through rune-by-rune:
+  ```go
+  for _, r := range "Hello" {
+      z01.PrintRune(r)
+  }
+  ```
 
 ---
 
-## 🧩 Part 5: `PrintRune` — Outputting Characters
+## 🧩 Part 5: `z01.PrintRune` — Your Output Lifeline
 
-### 🔍 What is `PrintRune`?
-A function that prints a rune to the console. It accepts only rune types.
-
-### 🧪 Correct Usage
+### ✅ Correct Usage
 ```go
-package main
-
-import "fmt"
-
-func main() {
-    fmt.PrintRune('A')        // ✅ prints A
-    fmt.PrintRune(rune(66))   // ✅ prints B
-}
+z01.PrintRune('A')        // ✅ prints A
+z01.PrintRune(rune(66))   // ✅ prints B
 ```
 
 ### ❌ Incorrect Usage
 ```go
-fmt.PrintRune(65)     // ❌ type error: int not rune
-fmt.PrintRune("A")    // ❌ type error: string not rune
+z01.PrintRune("A")        // ❌ string, not rune
+z01.PrintRune(65)         // ❌ int, not rune
 ```
 
-### 🧠 Pro Tips
-- Use `rune()` to convert integers to runes.
-- Use ASCII codes directly if known.
-- Always verify type compatibility.
+### 🧠 Piscine Tip
+- Always cast integers to `rune` if you’re using ASCII codes.
+- Use `'\n'` to print a newline.
 
 ---
 
-## 🧩 Part 6: Common Pitfalls
+## 🧩 Part 6: Common Pitfalls in the Piscine
 
-| Mistake | Why It Fails | Fix |
-|--------|---------------|-----|
-| Using `"` instead of `'` | `"A"` is a string | Use `'A'` |
-| Passing `int` to `PrintRune` | Needs `rune` type | Use `rune(65)` |
-| Assuming type inference handles runes | Defaults to `int` | Use explicit rune conversion |
+| Mistake                  | Why It Fails              | Fix                     |
+|--------------------------|---------------------------|--------------------------|
+| `z01.PrintRune("A")`     | `"A"` is a string         | Use `'A'` instead        |
+| `z01.PrintRune(65)`      | `int` not accepted        | Use `rune(65)`           |
+| `s[0]` without casting   | Returns byte (`uint8`)    | Use `rune(s[0])`         |
 
 ---
 
-## 🧩 Part 7: Mini Exercises
+## 🧩 Part 7: Mini Piscine Exercises
 
 ### 🧪 Exercise 1: Declare and print rune A
 ```go
 a := rune(65)
-fmt.PrintRune(a)
+z01.PrintRune(a)
 ```
 
 ### 🧪 Exercise 2: Use rune literal
 ```go
-fmt.PrintRune('B')
+z01.PrintRune('B')
 ```
 
 ### 🧪 Exercise 3: Convert int to rune and print
 ```go
 var x int = 67
-fmt.PrintRune(rune(x))  // prints C
+z01.PrintRune(rune(x))  // prints C
+```
+
+### 🧪 Exercise 4: Print a full string
+```go
+for _, r := range "Piscine Go!" {
+	z01.PrintRune(r)
+}
+z01.PrintRune('\n')
 ```
 
 ---
 
-## 🧩 Part 8: Advanced Notes for Senior Engineers
+## 🧩 Part 8: Advanced Notes for Piscine Survivors
 
-- Runes are UTF-8 aware — they support multi-byte characters.
-- Use `unicode` package for classification:
+- You can’t use `unicode.IsLetter`, so build your own logic:
   ```go
-  unicode.IsLetter('A')  // true
+  if r >= 'A' && r <= 'Z' {
+      // it's an uppercase letter
+  }
   ```
-- Use `strconv.Itoa(int(rune))` to convert rune to string.
-- Use `[]rune("Hello")` to iterate over characters safely.
+- To print digits from an `int`, use math:
+  ```go
+  n := 5
+  z01.PrintRune(rune(n + '0')) // prints '5'
+  ```
 
 ---
 
 ## 🧩 Summary Table
 
-| Concept | Tool | Example |
-|--------|------|---------|
-| ASCII | Encoding | `'A'` → 65 |
-| Variable declaration | Go syntax | `a := 10`, `var b int = 10` |
-| Rune | Character type | `'A'`, `rune(65)` |
-| PrintRune | Output rune | `fmt.PrintRune('A')` |
+| Concept         | Tool            | Example                  |
+|------------------|------------------|---------------------------|
+| ASCII            | Encoding         | `rune(65)` → `'A'`        |
+| Variable         | Declaration      | `a := rune(66)`           |
+| Rune             | Character type   | `'A'`, `rune(65)`         |
+| PrintRune        | Output rune      | `z01.PrintRune('A')`      |
+| Print string     | Loop with `range`| `for _, r := range s`     |
 
 ---
 
-This is how we build mastery, Jasper — not just by knowing the syntax, but by understanding the encoding, the types, and the compiler’s expectations. Ready for the next transcript? Let’s keep building this bulletproof guide.
+This is how we build piscine mastery, Jasper — not just by printing characters, but by understanding the encoding, the types, and the compiler’s expectations. Ready to build your own `PrintInt`, `PrintBool`, or even `PrintHex` next? Let’s keep sharpening your toolkit.
