@@ -1,183 +1,116 @@
-Absolutely brilliant, Jasper — this is one of Go’s most elegant features, and I’m going to turn it into a masterclass that not only teaches the `range` loop, but builds deep fluency in idiomatic iteration, slice traversal, and clean control flow.
+Absolutely brilliant, Jasper — and now let’s make this checkpoint-ready. Since piscine constraints **don’t allow `fmt`**, we’ll rewrite this masterclass using only:
+
+- ✅ `package main`
+- ✅ `github.com/01-edu/z01`
+- ❌ No `fmt`, `strings`, `maps`, or `channels`
 
 ---
 
-# 🧠 Masterclass: Iterating with `range` in Go — Slices, Indices & Idiomatic Loops
+# 🧠 Masterclass: Iterating with `range` in Go — Slices, Indices & Rune Output
 
-## 🧩 Part 1: Overview — Why `range` Is a Game-Changer
+## 🧩 Part 1: Why `range` Is a Game-Changer
 
-| Feature             | Benefit                                | Why It Matters |
-|---------------------|----------------------------------------|----------------|
-| Unified iteration   | No need for manual indexing            | Cleaner code |
-| Dual return values  | Index and element in one line          | More expressive |
-| Optional index      | Skip unused values with `_`            | Avoids clutter |
-| Auto progression    | No `i++` needed                        | Less boilerplate |
+| Feature             | Benefit                                |
+|---------------------|----------------------------------------|
+| Unified iteration   | No need for manual indexing            |
+| Dual return values  | Index and element in one line          |
+| Optional index      | Skip unused values with `_`            |
+| Auto progression    | No `i++` needed                        |
 
-Go’s `range` loop is designed for clarity, safety, and expressiveness — it’s the idiomatic way to traverse slices, arrays, maps, and channels.
-
----
-
-## 🧩 Part 2: Anatomy of a `range` Loop
-
-### 🔍 Syntax Breakdown
-```go
-for index, value := range slice {
-    // loop body
-}
-```
-
-| Component | Role                        | Example        |
-|-----------|-----------------------------|----------------|
-| `index`   | Position in the slice        | `0`, `1`, `2`, … |
-| `value`   | Element at that position     | `"Go"`, `"rocks"` |
-| `range`   | Keyword for iteration        | Built-in Go construct |
+`range` is Go’s cleanest way to loop through slices and strings — and it works perfectly with `z01.PrintRune`.
 
 ---
 
-## 🧩 Part 3: Practical Example — Looping Over a Slice
+## 🧩 Part 2: Looping Over a Slice of Runes
 
-### 🧪 Code Sample
+### 🧪 Example: Print `"hello"` using `range`
 ```go
-words := []string{"Go", "is", "awesome"}
+package main
 
-for i, w := range words {
-    fmt.Printf("%d: %s\n", i, w)
+import "github.com/01-edu/z01"
+
+func main() {
+	str := "hello"
+	for _, r := range str {
+		z01.PrintRune(r)
+	}
+	z01.PrintRune('\n')
 }
 ```
 
-### ✅ Output
-```
-0: Go
-1: is
-2: awesome
-```
-
-- Automatically handles indexing
-- Clean, readable output
-- No manual `i++` or bounds checking
+✅ Output: `hello`
 
 ---
 
-## 🧩 Part 4: Skipping Unused Values
+## 🧩 Part 3: Skipping Index or Value
 
-### 🔍 Use `_` to Ignore Index
+### 🔍 Ignore Index
 ```go
-for _, word := range words {
-    fmt.Println(word)
+for _, r := range "Go!" {
+	z01.PrintRune(r)
 }
+z01.PrintRune('\n')
 ```
 
-- Avoids unused variable warnings
-- Expresses intent clearly
+✅ Output: `Go!`
 
-### 🔍 Use `_` to Ignore Value
+### 🔍 Ignore Value
 ```go
-for i, _ := range words {
-    fmt.Println(i)
+for i, _ := range "Go!" {
+	z01.PrintRune(rune(i + '0')) // prints index as digit
 }
+z01.PrintRune('\n')
 ```
 
-- Useful when only position matters
+✅ Output: `012`
 
 ---
 
-## 🧩 Part 5: Range Over Other Structures
+## 🧩 Part 4: Looping Over Integer Slice
 
-### 🔍 Arrays
+You can loop through a slice of integers and print each one as a digit:
+
 ```go
-arr := [3]int{10, 20, 30}
-for i, v := range arr {
-    fmt.Println(i, v)
-}
-```
-
-### 🔍 Maps
-```go
-m := map[string]int{"a": 1, "b": 2}
-for key, value := range m {
-    fmt.Println(key, value)
-}
-```
-
-### 🔍 Channels
-```go
-ch := make(chan int)
-go func() {
-    for i := 0; i < 3; i++ {
-        ch <- i
-    }
-    close(ch)
-}()
-for v := range ch {
-    fmt.Println(v)
-}
-```
-
----
-
-## 🧩 Part 6: Best Practices & Pitfalls
-
-### ✅ Best Practices
-- Use `range` for idiomatic Go loops
-- Skip unused values with `_`
-- Prefer `range` over manual indexing for slices
-- Use `fmt.Printf` for clear debugging
-
-### ❌ Common Pitfalls
-| Mistake | Why It Fails | Fix |
-|--------|---------------|-----|
-| Using `range` on nil slice | No iteration occurs | Ensure slice is initialized |
-| Modifying slice during iteration | May cause unexpected behavior | Avoid in-place edits |
-| Forgetting to close channels | `range` blocks forever | Always `close()` channels
-
----
-
-## 🧩 Part 7: Mini Exercises
-
-### 🧪 Exercise 1: Print all elements in a slice
-```go
-nums := []int{1, 2, 3, 4}
+nums := []int{1, 2, 3}
 for _, n := range nums {
-    fmt.Println(n)
+	z01.PrintRune(rune(n + '0'))
 }
+z01.PrintRune('\n')
 ```
 
-### 🧪 Exercise 2: Count characters in a string
-```go
-s := "Go"
-for i, r := range s {
-    fmt.Printf("Index %d: %c\n", i, r)
-}
-```
-
-### 🧪 Exercise 3: Iterate over a map
-```go
-grades := map[string]string{"Alice": "A", "Bob": "B"}
-for name, grade := range grades {
-    fmt.Printf("%s got %s\n", name, grade)
-}
-```
+✅ Output: `123`
 
 ---
 
-## 🧩 Part 8: Advanced Notes for Senior Engineers
+## 🧩 Part 5: Mini Exercises
 
-- `range` over strings returns index and rune (not byte)
-- Use `range` with `make([]T, n)` for preallocated slices
-- Use `range` with `sync.Map` via `Range()` method
-- Avoid modifying the underlying slice during iteration unless you fully understand the implications
+### 🧪 Exercise 1: Print all letters in `"world"`
+```go
+for _, r := range "world" {
+	z01.PrintRune(r)
+}
+z01.PrintRune('\n')
+```
+
+### 🧪 Exercise 2: Print index positions of `"Go"`
+```go
+for i := range "Go" {
+	z01.PrintRune(rune(i + '0'))
+}
+z01.PrintRune('\n')
+```
 
 ---
 
 ## 🧩 Summary Table
 
-| Concept            | What It Does                        | Example                     |
-|--------------------|-------------------------------------|-----------------------------|
-| `range` over slice | Iterates with index and value       | `for i, v := range slice`   |
-| Skip index         | Ignores position                    | `for _, v := range slice`   |
-| Skip value         | Ignores element                     | `for i, _ := range slice`   |
-| Auto progression   | No manual increment needed          | Loop advances automatically |
+| Pattern                  | What It Does                     |
+|--------------------------|----------------------------------|
+| `for _, r := range str`  | Prints each character            |
+| `for i := range str`     | Prints each index                |
+| `range` over slice       | Works with `[]int`, `[]rune`     |
+| Use `z01.PrintRune`      | Required for piscine output      |
 
 ---
 
-This is how we build mastery, Jasper — not just by looping, but by writing expressive, idiomatic, and efficient Go code. Ready for the next transcript? Let’s keep building this bulletproof guide.
+This is how we build mastery, Jasper — not just by looping, but by writing clean, expressive Go code that passes every checkpoint constraint. Want to try building a `ReverseString` or `CountAlpha` next? Let’s keep going.
