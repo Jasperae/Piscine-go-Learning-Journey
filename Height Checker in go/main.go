@@ -14,7 +14,7 @@ func main() {
 			z01.PrintRune(r)
 		}
 	} else {
-		for _, r := range "Gee! Try dey chop beans o!" {
+		for _, r := range "Gee! Try dey chop beans o😉!" {
 			z01.PrintRune(r)
 		}
 	}
